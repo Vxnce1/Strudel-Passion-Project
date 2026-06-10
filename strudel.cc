@@ -1,18 +1,23 @@
 setcpm(100 / 4)
 
+// let chordD = "a2, d3, f#3, a4"
+// let chordDm = "e3, f2, a3, c3"
+// let chordEm = "d2, g2, d3, b3"
+// let chordF = "[~ ~ ~ [e2, a3, c3, e3]]"
+
 let bar1 = "- [A4 G4 F#4 E4]"
 let bar2 = "E4 A3@0.5 A3@2 F#4@0.5"
 let bar3 = "F#4@2 - @0.5 [D4 D4 E4]@1.5"
 let bar4 = "[F#4 G4 F#4 B3]@2 D4 E4"
 
-let line1 = "- [A4 G4 F#4 E4]@2 E4 A3@0.5 A3@2 F#4@0.5 F#4@2 - @0.5 [D4 D4 E4]@1.5 [F#4 G4 F#4 B3]@2 D4 E4"
+let line1 = "- [A4 G4 F#4 E4]@2 - A3@0.5 A3@2 F#4@0.5 F#4@2 - @0.5 [D4 D4 E4]@1.5 [F#4 G4 F#4 B3]@2 D4 E4"
 
 let bar5 = "E4@1.5 A3@0.5 [A4 G4 F#4 E4]@2"
 let bar6 = "E4 A3@0.5 A3 [A3 D4 F#4]@1.5"
 let bar7 = "F#4@3.5 B3@0.5"
 let bar8 = "[F#4 G4 F#4 B3]@2 D4 E4"
 
-let line2 = "E4@1.5 A3@0.5 [A4 G4 F#4 E4]@2 - A3@0.5 A3 [A3 D4 F#4]@1.5 F#4@3.5 B3@0.5 [F#4 G4 F#4 B3]@2 D4 E4"
+let line2 = "-@1.5 A3@0.5 [A4 G4 F#4 E4]@2 - A3@0.5 A3 [A3 D4 F#4]@1.5 F#4@3.5 B3@0.5 [F#4 G4 F#4 B3]@2 D4 E4"
 
 let bar9 = "E4 [A4 A4] A4 [A4 B4]"
 let bar10 = "B4 A4@0.5 G4@1.5 [F#4 F#4]"
@@ -44,33 +49,22 @@ let line6 = "A4@0.5 G4@2 [D4 D4 E4]@1.5 [A4 G4 F#4]@1.5 E4 B4 A4@0.5 [G4@1.5 F#4
 
 
 $: cat(
-  note(line1),
-  note(line2),
-  note(line3),
-  note(line4),
+  // note(line1),
+  // note(line2),
+  // note(line3),
+  // note(line4),
   note(line5),
-  note(line6)
+  note(line6),
+  note("F#4, D4")
 )
 .slow(4)
 .sound("piano")
   ._scope()
-
+  
+$: s("<bd hh hh bd rim hh hh hh>*12")
+  
 
 //chord progression
-let chordD = "a2, d3, f#3, a4"
-let chordDm = "e3, f2, a3, c3"
-let chordEm = "d2, g2, d3, b3"
-let chordF = "[~ ~ ~ [e2, a3, c3, e3]]"
-//let chordF = "f2, a3, c3, c2"
-
-// $: cat(
-//   note(chordD),
-//   note(chordDm),
-//   note(chordEm),
-//   note(chordF)
-// )
-.sound("piano")
-// .slow(2)
 
 
 
