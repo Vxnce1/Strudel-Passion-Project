@@ -42,26 +42,40 @@ let bar24 = "-@0.5 D4 B3@0.5 [F#4 D4 D4 E4]@2"
 
 let line6 = "A4@0.5 G4@2 [D4 D4 E4]@1.5 [A4 G4 F#4]@1.5 E4 B4 A4@0.5 [G4@1.5 F#4 E4@0.5]@1.5 E4 F#4 D4@0.5 -@0.5 D4 B3@0.5 [F#4 D4 D4 E4]@2"
 
-
-$: s("[bd hh hh bd rim hh hh:2 hh]").fast(1.5)
-  .stack(
-    n("0 2 4 <[6,8] [7,9]>")
-      .scale("<C:major A:minor>")
-      .s("piano")
-      .fast(1.5),
-
-    n("<0 4 7 11>")
-      .s("pad")
-      .slow(4)
-      .gain(0.4),
+let dr =
+stack( s("[bd:<1 0>(<3 1>,8,<0 2>:1.3)] , [~ sd:<15>:2.5]").note("B1").bank("LinnDrum")
+.decay(.3).room(".3:2").fast(2)
+)
+// s("[LinnDrum_hh(<3 2>,8)]").hp("1000").lp("9000").decay(.3).velocity([".8 .6"]).room(".3:2").fast(2),
+// s("sh*8").note("B1").bank("RolandTR808").room(".6:2").velocity("[.8 .5]!4").postgain(1.5).fast(2))._pianoroll({vertical:0,flipTime:1,fill:0,labels:1})
 
 
-  )
-  
-_$: cat(note("F#4@0.25 F#4@0.25 E4@0.25 F#4@0.5 F#4@0.25 E4@0.25 F#4@0.5 F#4@0.25 E4@0.25 F#4@0.25 F#4@0.25 G4@0.25 F#4@0.25 E4@0.25 -@0.25")
-      ).s("piano")
-.slow(1.25)
+let dr1 = 
+s("[bd -] [sd [bd bd]] [-@4] [sd -@3], [oh hh] [hh [hh -]] [hh hh hh hh] [hh hh hh hh]")
 
+let dr2 = 
+  s("[bd [ht bd]] [[sd ht] bd] [mt@1.5 mt@0.5] [sd lt], hh@0.5 -@3.5")
+
+let fulldr1 = 
+  cat(dr1, dr1, dr1, dr2)
+  ._pianoroll({labels:1})
+
+let chordP1 = 
+  note("d3@4 f#2@4 g2@5.5 a3@1.5 a3, a4@4 c#4@4 b4@5.5 c#4@1.5 d4, e4@4 e4@4 d4@5.5 e4@1.5 e4, f#4@4 a5@4 f#4@5.5 a5@1.5 a5")
+  .sound("piano")
+  .slow(4)
+  ._pianoroll({labels:1})
+
+let m1 = note(cat("D4 -@2 [B5 F#4]@0.5 A5@3 [F#4 F#4]@0.5 F#5@0.5 A5@0.25 A5@0.75 G4@0.25 G4@0.75 F#4@0.25 F#4@0.75 E4@0.25 E4@0.5 D4@0.75 B4 -@1.5 D4@1.5"))
+  .sound("sine")
+  .slow(4)
+
+//4 = 1 bar
+$: arrange(
+  [4, fulldr1],
+  [4*3, stack(chordP1, fulldr1, m1)]
+    // [4, note(m1)]
+)
 
 _$: cat(
    note(line1),
@@ -99,3 +113,6 @@ _$: cat(
   )
 .slow(4)
 .sound("piano")
+
+
+.color("<pink cyan green orange>").punchcard({labels:1,vertical:1,flipTime:1,fill:0,strokeActive:1,filpValue:1,fontFamily:'teletext'})
