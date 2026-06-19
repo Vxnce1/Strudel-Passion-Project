@@ -62,19 +62,28 @@ let fulldr1 =
 
 let chordP1 = 
   note("d3@4 f#2@4 g2@5.5 a3@1.5 a3, a4@4 c#4@4 b4@5.5 c#4@1.5 d4, e4@4 e4@4 d4@5.5 e4@1.5 e4, f#4@4 a5@4 f#4@5.5 a5@1.5 a5")
-  .sound("piano")
+  .sound("piano").gain(0.8)
   .slow(4)
   ._pianoroll({labels:1})
 
 let m1 = note(cat("D4 -@2 [B5 F#4]@0.5 A5@3 [F#4 F#4]@0.5 F#5@0.5 A5@0.25 A5@0.75 G4@0.25 G4@0.75 F#4@0.25 F#4@0.75 E4@0.25 E4@0.5 D4@0.75 B4 -@1.5 D4@1.5"))
-  .sound("sine")
+  .sound("sine").gain(1.2)
   .slow(4)
 
-//4 = 1 bar
+let bassline =
+note("<[d2*12@3 a1*4 f#2*4 c#2*4 f#2!2] [g2*4 d2*4 g2!2 a2*4 e2*4 a2!2]>/2")
+.s("gm_electric_bass_pick").gain(0.3)
+.decay(.5).velocity(rand.range(.7,1).slow(4))
+.lp(1000).compressor("-20:20:10:.002:.02").room(".6:2")
+.postgain(1.5).color('white')._scope({thickness:2})
+
+// a1*32
+
+//4 = 1 bar/16 beats
 $: arrange(
-  [4, fulldr1],
-  [4*3, stack(chordP1, fulldr1, m1)]
-    // [4, note(m1)]
+  [2, stack(cat(dr1, dr2))],
+  [4*3, stack(chordP1, fulldr1, m1, bassline)]
+  //[10, note("-")]
 )
 
 _$: cat(
@@ -83,8 +92,7 @@ _$: cat(
   note(line3),
   note(line4),
   note(line5),
-  note(line6),
-  note("F#4@2, D4@2")
+  note(line6)
 )
 .slow(4)
 .sound("piano")
@@ -115,4 +123,4 @@ _$: cat(
 .sound("piano")
 
 
-.color("<pink cyan green orange>").punchcard({labels:1,vertical:1,flipTime:1,fill:0,strokeActive:1,filpValue:1,fontFamily:'teletext'})
+// .color("<pink cyan green orange>").punchcard({labels:1,vertical:1,flipTime:1,fill:0,strokeActive:1,filpValue:1,fontFamily:'teletext'})
