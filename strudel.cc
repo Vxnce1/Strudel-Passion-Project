@@ -52,7 +52,8 @@ let verse =
 )
 .slow(4)
 .sound("piano")
-._pianoroll()
+
+
 
 
 let interverse1 = note("E5@0.25 F#5@1.75 G5@0.25 F#5@0.5 G5@0.25 F#5@0.5 D5@0.25 E5@2 [D5 B5 c#5 e5] A5 [b5 c#5 d5 c#5] d5@0.25 A5@0.5 [D5 c#5 d5 a5] [d5 d5 c#5 d5] a5@0.25 e5 d5@0.25 c#5@0.25 b5@0.25 a5 [f#4 b5 e4 d4] b5@0.5")
@@ -182,4 +183,7 @@ $: arrange(
 
 
 
+// .color("<red orange yellow pink>").punchcard()
+// .color("<red orange yellow purple>").spectrum()
+// .color("<blue violet purple cyan pink>").pianoroll()
  // .color("<pink cyan green orange>").punchcard({labels:1,vertical:1,flipTime:1,fill:0,strokeActive:1,filpValue:1,fontFamily:'teletext'})
