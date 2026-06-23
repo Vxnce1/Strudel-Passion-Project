@@ -63,7 +63,7 @@ let interverse2 = note("a5@0.5 f#4@0.25 e4@0.75 b5@0.25 a5@0.75 f#4@0.25 d4@0.75
 
 
 let fullinterv = cat(interverse1, interverse2)
-  .sound("user")
+  .sound("gm_tenor_sax")
   .slow(4)
   .gain(1.5)
   ._pianoroll()
